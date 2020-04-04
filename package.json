@@ -4,16 +4,73 @@
   "description": "ES6",
   "main": "server.js",
   "scripts": {
-    "test": "jest"
+    "lint": "eslint ./",
+    "lint-fix": "eslint ./ --fix",
+    "pretest": "npm run lint",
+    "test": "jest --verbose --coverage",
+    "predev": "npm run lint",
+    "dev": "nodemon --exec babel-node ./src/server.js",
+    "start": "babel-node ./src/server.js",
+    "build": "webpack",
+    "prod": "node ./dist/api.bundle.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ahmednkhan24/create-node-app.git"
   },
-  "author": "",
+  "author": "Ahmed Khan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ahmednkhan24/create-node-app/issues"
   },
-  "homepage": "https://github.com/ahmednkhan24/create-node-app#readme"
+  "homepage": "https://github.com/ahmednkhan24/create-node-app#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-sanitizer": "^1.0.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.0",
+    "babel-polyfill": "^6.26.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^25.2.7",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true,
+      "jest": true
+    },
+    "extends": [
+        "airbnb-base"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "ignorePatterns": ["node_modules/", "coverage/", "dist/"],
+    "rules": {
+        "no-console": "off"
+    }
+  }
 }
