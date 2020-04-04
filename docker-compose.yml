@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  create-node-app:
+    build: .
+    ports:
+      - 80:3000
